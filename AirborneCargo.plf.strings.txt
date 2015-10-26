@@ -1,0 +1,926 @@
+PLF!
+bootloader
+main_boot
+alt_boot
+factory
+system
+update
+data
+/data
+PLF!
+ -- System halted
+Attempting division by 0!
+Uncompressing Linux...
+ done, booting the kernel.
+invalid distance too far back
+invalid distance code
+invalid literal/length code
+incorrect header check
+unknown compression method
+invalid window size
+invalid block type
+invalid stored block lengths
+too many length or distance symbols
+invalid code lengths set
+invalid bit length repeat
+invalid literal/lengths set
+invalid distances set
+incorrect data check
+Out of memory while allocating output buffer
+Out of memory while allocating input buffer
+Out of memory while allocating z_stream
+Out of memory while allocating workspace
+Not a gzip file
+read error
+uncompression error
+parrotparts=nand0:256K(Pbootloader),16M(Pmain_boot),8M(Pfactory),32M(Psystem),73472K(Pupdate) console=ttyPA1,115200 loglevel=5 quiet lpj=1038336 ubi.mtd=Pfactory,2048 ubi.mtd=Psystem,2048 root=ubi1:system rootfstype=ubifs ubi.mtd=Pupdate,2048  boxinit.plateform=PTA_P6 boxinit.application=PA_DELOSEVO
+data
+data/trigger-fvt6
+factory
+etc/init.d
+etc/fstab
+ubi1:system     /           ubifs   ro    
+ubi0:factory    /factory    ubifs   ro    
+ubi2:update     /update     ubifs   rw,sync    
+ubi2:data       /data      
+ubifs   rw    
+etc/trigger-fvt6
+etc/boxinit.d
+etc/boxinit.d/20-udhcpd.rc
+on post-fs-data
+mkdir /var/lib/misc
+copy /etc/udhcpd.leases /var/lib/misc/udhcpd.leases
+service udhcpd /usr/bin/ulogwrapper /usr/sbin/udhcpd -f -S
+class main
+user root
+group inet
+disabled
+etc/boxinit.d/90-ckcmd.rc
+# -*- mode:conf -*-
+service ckcmd /usr/bin/ckcmd -p unix:/tmp/ckcmd_socket -P 0 -T tcp:23000 -b
+    user nobody
+    group log inet
+    # ckcmd should have a low priority
+    setenv CKCMD_NICENESS 15
+    disabled
+# only start when debug is enabled
+on property:ro.debuggable=1
+    start ckcmd
+etc/mtab
+/proc/mounts
+etc/ld.so.conf
+etc/host.conf
+order hosts, bind
+multi on
+etc/resolv.conf
+/tmp/etc/resolv.conf
+etc/final.stamp
+etc/avahi
+etc/udhcpd_usb0.conf
+start 192.168.2.2
+end 192.168.2.3
+interface usb0
+option subnet 255.255.255.0
+etc/build.prop
+ro.build.date=jeudi 24 septembre 2015, 19:08:15 (UTC+0200)
+ro.build.date.utc=1443114495
+ro.build.alchemy.product=delos
+ro.build.alchemy.variant=evo
+ro.build.hostname=fr-pm-intc11-prd
+ro.parrot.build.group=drones
+ro.parrot.build.project=delos
+ro.parrot.build.product=delos
+ro.parrot.build.variant=evo
+ro.parrot.build.region=
+ro.parrot.build.uid=delos-evo-2.1.7
+ro.parrot.build.version=2.1.7
+etc/inetd.conf
+21 stream tcp nowait root ftpd ftpd -w /data/video
+5551 stream tcp nowait root ftpd ftpd -w /update
+80 stream tcp nowait root busybox httpd -h /www -i
+etc/group
+root:x:0:
+etc/profile
+# Shell configuration script
+# Executed if the "-l" flag is passed to /bin/sh in /etc/inittab
+# Useful commands
+alias ll='ls -lh'
+alias l='ls'
+alias lsusb='/bin/delos_lsusb.sh'
+export HOME=/data
+# Decorative stuff
+export PS1="[Delos] \$ "
+# Stuff to execute just before giving control to the user
+/bin/post.sh &
+touch /tmp/.shell.userconnected
+etc/PAL
+etc/ld.so.cache
+ld.so-1.7.0
+glibc-ld.so.cache1.1
+etc/libnl
+etc/ld.so.preload
+/lib/libc-arm-2012-03-fix.so
+etc/udhcpd.leases
+etc/default.prop
+ro.debuggable=1
+sbin
+sbin/mkfs.vfat
+../bin/busybox
+sbin/mkdosfs
+sbin/syslogd
+sbin/bootchartd
+sbin/udhcpc
+sbin/sysctl
+sbin/route
+sbin/losetup
+sbin/udevd.sh
+#!/bin/sh
+# start udevd with udev_init launcher
+# Note: application can overide susbsystem triggered at startup using shell arguments
+#       ex: udevd.sh trigger --action=add --subsystem-match=usb --subsystem-match=firmware
+exec udevd_init $@
+sbin/insmod
+sbin/blockdev
+sbin/modprobe
+sbin/halt
+sbin/klogd
+sbin/mke2fs
+sbin/setconsole
+sbin/getty
+sbin/rmmod
+sbin/fbsplash
+sbin/blkid
+sbin/hwclock
+sbin/ifconfig
+sbin/poweroff
+sbin/reboot
+sbin/lsmod
+sbin/fdisk
+sbin/zcip
+sbin/mdev
+sbin/mkfs.ext2
+sbin/arp
+sbin/modinfo
+sbin/switch_root
+www/index.html
+<!DOCTYPE html>
+<html>
+<body>
+<h1>### Parrot Dragon Firmware ###</h1>
+<p>TARGET_PRODUCT            = delos</p>
+<p>BUILD_DATE                = 2015-09-24</p>
+<p>BUILD_TIME                = 19h07m48s</p>
+<p>BUILD_COMPILER            = pmlevesque</p>
+<p>BUILD_COMPUTER            = fr-pm-intc11-prd</p>
+<p>BUILD_MYKONOS3_MAIN_SHA1  = 0123456789012345678901234567890123456789</p>
+<p>BUILD_DRAGON_VERSION      = 2.1.7</p>
+</body>
+</html>
+home
+/data/home
+debugfs
+version.txt
+2.1.7
+bin/true
+busybox
+bin/fgrep
+busybox
+bin/gzip
+busybox
+bin/sync
+busybox
+bin/sh
+busybox
+bin/blink_led_green.sh
+#!/bin/sh
+EVOFILE=/factory/evo.txt
+if [ -f ${EVOFILE} ];then
+  #green light off
+  minidrone_leds ____
+  while [ 1 ];
+  do
+    minidrone_leds ____
+    usleep 100
+    minidrone_leds _GG_
+    usleep 100
+  done
+else
+  # Only right eye red
+  minidrone_leds __R_
+  while [ 1 ];
+  do
+    minidrone_leds __R_
+    usleep 100
+    minidrone_leds _GR_
+    usleep 100
+  done
+bin/chmod
+busybox
+bin/onoffbutton
+bin/onoffbutton/shortpress_1.sh
+#!/bin/sh
+# Script called when pressing the ON/OFF button once
+echo "Triggered shutdown" | logger -s -t "ShortPress1" -p user.info
+/bin/delos_shutdown.sh
+bin/onoffbutton/release.sh
+#! /bin/sh
+# release.sh
+source /bin/user_gpio.sh
+while [ $i -lt 30 ]; do
+    minidrone_leds _GG_
+    usleep 200000
+    minidrone_leds ____
+    usleep 200000
+    i=$(($i+1))
+done
+minidrone_leds _GG_
+bin/onoffbutton/verylongpress_0.sh
+#!/bin/sh
+echo "Factory settings" | logger -s -t "VeryLongPress" -p user.info
+/bin/delos_reset_factory.sh
+bin/ipcalc
+busybox
+bin/ckcmd_file.sh
+#!/bin/sh
+source /bin/delos_shell.sh
+[ ! -d ${DELOS_MOUNT_PATH} ] && exit 1
+killall -9 ckcmd 2>/dev/null
+CKCM_DIR=${DELOS_DEBUG_CUR_DIR}/ckcm
+mkdir -p $CKCM_DIR
+CKCM_FILE=${CKCM_DIR}/ckcm.bin
+echo "CKCM traces go into file $CKCM_FILE" | logger -s -t "Debug" -p user.info
+ckcmd -F $CKCM_FILE -P 23001 &
+# No need for redirect anymore... dragon-prog does it directly !
+#/bin/ckcmd_redirect.sh
+exit 0
+bin/ip
+busybox
+bin/usleep
+busybox
+bin/sed
+busybox
+bin/rmdir
+busybox
+bin/powertop
+busybox
+bin/umount_imgdisk.sh
+#!/bin/sh
+MOUNT_PATH=${1}
+if [ -n "$(mount | grep ${MOUNT_PATH})" ]; then
+  echo "[USB key] unmounting ..."
+  umount ${MOUNT_PATH}
+  losetup -d /dev/loop0 2>/dev/null
+  # Make it read-only by default
+  chmod 400 ${MOUNT_PATH}
+  sync
+  echo "[USB key] unmounted"
+bin/echo
+busybox
+bin/switch_usb_mode.sh
+#!/bin/sh
+# Deprecated file
+bin/gdbsalsa.sh
+#!/bin/sh
+killall -9 gdbserver
+killall -9 salsa_p6idev_linux
+                                                                                
+gdbserver localhost:10001 /NFS/salsa_p6idev_linux & 
+bin/mount_imgdisk.sh
+#!/bin/sh
+USBDISKIMG_PATH=${1}
+MOUNT_PATH=${2}
+if [ ! -n "$(mount | grep ${MOUNT_PATH})" ]; then
+  echo "[USB key] mounting ..."
+  losetup -o 4096 /dev/loop0 ${USBDISKIMG_PATH}
+  mkdir -p ${MOUNT_PATH}
+  mount -t vfat /dev/loop0 ${MOUNT_PATH}
+  fsck_msdos -y /dev/loop0
+  echo "[USB key] mounted"
+bin/dnsdomainname
+bin/flight
+bin/flight/flat
+udpsend 127.0.0.1 5556 testflat
+bin/flight/reset
+udpsend 127.0.0.1 5556 test256
+sleep 1
+udpsend 127.0.0.1 5556 test0
+bin/flight/land
+udpsend 127.0.0.1 5556 test512
+bin/flight/init
+echo -ne "AT*REF=1,0\r" > test0 ; sync
+echo -ne "AT*REF=1,256\r" > test256 ; sync
+echo -ne "AT*REF=1,512\r" > test512 ; sync
+echo -ne "AT*FLAT=1\r" > testflat ; sync
+chmod +x ./*
+bin/flight/emergency
+udpsend 127.0.0.1 5556 test256
+bin/mount_usb.sh
+#!/bin/sh
+# Deprecated
+bin/netstat
+bin/ln
+bin/egrep
+bin/mktemp
+bin/init_motors.sh
+#!/bin/sh
+source /bin/user_gpio.sh
+gpio_out MOTOR_FAULT 0
+for i in 0 1 2 3; do
+  valid_pwm 10000 0 ${i} &
+  usleep 200000
+  killall -9 valid_pwm
+done
+bin/setserial
+bin/ps
+bin/ls
+bin/scriptreplay
+bin/chgrp
+bin/umount
+bin/pairing_setup.sh
+# Deprecated
+bin/dev
+#!/bin/sh
+if [ -n "$(mount | grep system | grep ro)" ]; then
+  echo "Going to developper mode ..."
+  mount / -o remount,rw
+  mount /factory -o remount,rw
+else
+  echo "Stopping developper mode ..."
+  mount /factory -o remount,ro
+  mount / -o remount,ro
+bin/pwd
+bin/delos_lsusb.sh
+#!/bin/sh
+lsusb | sed "s/\(1d6b:0002\)/\1   Root Hub/" | sed "s/\(1e4e:0104\)/\1   EtronTech Video Chip + MT9V117 Camera/"
+bin/lzop
+bin/false
+bin/getopt
+bin/rev
+bin/initsalsa.sh
+#!/bin/sh
+ifconfig eth0 up
+ifconfig eth0 192.168.1.2 netmask 255.255.255.0 up && echo "eth0 up"
+mkdir -p /NFS
+mount 192.168.1.1:/NFS -t nfs /NFS -o nolock && echo "nfs up"
+route add default gw 192.168.1.1
+echo 4 > /proc/cpu/alignment
+devmem2 0xD0000264 w 0x110404
+sleep 1
+devmem2 0xD0000264 w 0x100404            
+bin/mpstat
+bin/mknod
+bin/blink_led_orange.sh
+#!/bin/sh
+EVOFILE=/factory/evo.txt
+if [ -f ${EVOFILE} ];then
+  #green light off
+  minidrone_leds ____
+  while [ 1 ];
+  do
+    minidrone_leds ____
+    usleep 100
+    minidrone_leds _OO_
+    usleep 100
+  done
+else
+  # Only right eye red
+  minidrone_leds __R_
+  while [ 1 ];
+  do
+    minidrone_leds __R_
+    usleep 100
+    minidrone_leds _OR_
+    usleep 100
+  done
+bin/delos_camera.sh
+# Force activation of the Genesys chip
+gpio 30 -d ho 1
+# Start capturing frames
+yavta -c -f YUYV -s 640x480 /dev/video0
+bin/cp
+bin/rm
+bin/mount_debug_imgdisk.sh
+#!/bin/sh
+DEBUG_USBDISKIMG_PATH=${1}
+DEBUG_MOUNT_PATH=${2}
+if [ ! -n "$(mount | grep ${DEBUG_MOUNT_PATH})" ]; then
+  echo "[USB key debug] mounting ..."
+  losetup -o 4096 /dev/loop1 ${DEBUG_USBDISKIMG_PATH}
+  mkdir -p ${DEBUG_MOUNT_PATH}
+  mount -t vfat /dev/loop1 ${DEBUG_MOUNT_PATH}
+  fsck_msdos -y /dev/loop1
+  echo "[USB key debug] mounted"
+bin/uname
+bin/chown
+bin/mount
+bin/nfs_usb.sh
+#!/bin/sh
+ip="192.168.2.2"
+if [ "$#" == "1" ]; then
+ip="192.168.2."$1
+echo "Connecting to "$ip
+mkdir -p /mnt/nfs
+mount -o nolock,proto=tcp -t nfs $ip:/srv/nfs /mnt/nfs
+bin/df
+bin/demo_global.sh
+#!/bin/sh
+DEMO_FILENAME="demo.xml"
+DEMO_LOCAL_PATH="/data/${DEMO_FILENAME}"
+bin/pidof
+bin/base64
+bin/stat
+bin/nfs.sh
+#!/bin/sh
+ip="192.168.1.2"
+if [ "$#" == "1" ]; then
+ip="192.168.1."$1
+echo "Connecting to "$ip
+mkdir -p /mnt/nfs
+mount -o nolock,proto=tcp -t nfs $ip:/srv/nfs /mnt/nfs
+bin/cttyhack
+bin/bnep_setup.sh
+#!/bin/sh
+echo "Configuring BNEP interface ..." > /dev/console
+ifconfig bnep 192.168.1.1 up
+bin/delos_reset_factory.sh
+#!/bin/sh
+source /bin/delos_shell.sh
+name=$(basename $0)
+logger -s -t "$name" -p user.info "Enter $0"
+DRAGONSHELL_stopNkill_dragon #see dragon_shell.sh in common skel
+umount /data/ftp/*
+logger -s -t "$name" -p user.info "Erase all data... (unmount not down => bad...)"
+rm -Rf /data/*
+sync
+# Shutdown the system
+logger -s -t "$name" -p user.info "Shutdown please..."
+/bin/delos_shutdown.sh
+bin/login.sh
+#!/bin/sh 
+exec /bin/sh -l
+bin/grep
+bin/sleep
+bin/date
+bin/init
+bin/stty
+bin/tar
+fIxb
+bin/kill
+bin/conspy
+bin/cat
+bin/reboot.sh
+#!/bin/sh
+# Script to reboot the delos clean
+reboot
+bin/gunzip
+bin/vi
+bin/touch
+bin/dmesg
+bin/mv
+bin/reset_settings.sh
+#!/bin/sh
+# Delete only dragon.conf file
+rm /data/dragon.conf
+# System reboot
+sync
+reboot
+bin/watch
+bin/memory_check.sh
+#!/bin/sh
+# Deprecated
+bin/init_gpios.sh
+#!/bin/sh
+# ME
+gpio 171 -d lo 0
+gpio 172 -d lo 0 
+gpio 173 -d lo 0 
+gpio 174 -d lo 0 
+gpio 175 -d lo 0
+# CO
+gpio 176 -d i
+# MBV
+gpio 78 -d i
+gpio 79 -d i
+gpio 80 -d i
+gpio 81 -d i
+# NVMC
+gpio 178 -d lo 0
+gpio 179 -d lo 0
+bin/kk
+#!/bin/sh
+killall -9 dragon-prog
+bin/mkdir
+bin/umount_debug_imgdisk.sh
+#!/bin/sh
+DEBUG_MOUNT_PATH=${1}
+if [ -n "$(mount | grep ${DEBUG_MOUNT_PATH})" ]; then
+  echo "[USB debug key] unmounting ..."
+  umount ${DEBUG_MOUNT_PATH}
+  losetup -d /dev/loop1 2>/dev/null
+  # Make it read-only by default
+  chmod 400 ${DEBUG_MOUNT_PATH}
+  sync
+  echo "[USB debug key] unmounted"
+bin/dd
+bin/zcat
+bin/updater
+bin/updater/updater_scanplffound.sh
+#!/bin/sh
+while [ -f /tmp/.updater.scanning  ]; do
+    minidrone_leds _O__ ; sleep 1 ;
+    minidrone_leds __O_ ; sleep 1 ;
+done; minidrone_leds _OO_;
+bin/updater/productname
+rollingspider
+bin/updater/updater_prolog.sh
+#!/bin/sh
+source /bin/updater/updater_common.sh
+while [ -f ${UPDATE_PROCESSING} ]; do
+    minidrone_leds _O__ ; usleep 500000 ;
+    minidrone_leds __O_ ; usleep 500000 ;
+done
+bin/iostat
+bin/ping
+bin/ash
+bin/ckcmd_tcp.sh
+#!/bin/sh
+killall -9 ckcmd 2>/dev/null
+echo "CKCM traces go thought TCP" | logger -s -t "Debug" -p user.info
+ckcmd -T tcp:23000 &
+# No need for redirect anymore... dragon-prog does it directly !
+#/bin/ckcmd_redirect.sh
+exit 0
+bin/hostname
+proc
+customer.firmware
+lib/libBrokenLocale.so.1
+libBrokenLocale-2.15.so
+lib/libnss_nis.so.2
+libnss_nis-2.15.so
+lib/firmware
+lib/firmware/etron
+lib/firmware/etron/etron_latest.bin
+etron.2.0.2.9.bin
+lib/firmware/atmel
+lib/firmware/atmel/atmel.bin
+lib/firmware/atmel/atmelVersion.txt
+lib/libnss_files.so.2
+libnss_files-2.15.so
+lib/libnss_nisplus.so.2
+libnss_nisplus-2.15.so
+lib/libsmartcols.so
+libsmartcols.so.1.1.0
+lib/libnss_hesiod.so.2
+libnss_hesiod-2.15.so
+lib/libcrypt.so.1
+libcrypt-2.15.so
+lib/libnss_db.so.2
+libnss_db-2.15.so
+lib/libm.so.6
+libm-2.15.so
+lib/libuuid.so.1
+libuuid.so.1.3.0
+lib/libpthread.so.0
+libpthread-2.15.so
+lib/libmount.so
+libmount.so.1.1.0
+lib/libblkid.so.1
+libblkid.so.1.1.0
+lib/libcidn.so.1
+libcidn-2.15.so
+lib/libanl.so.1
+libanl-2.15.so
+lib/libnss_compat.so.2
+libnss_compat-2.15.so
+lib/udev
+lib/udev/rules.d
+lib/libfdisk.so
+libfdisk.so.1.1.0
+lib/libfdisk.so.1
+libfdisk.so.1.1.0
+lib/libuuid.so
+libuuid.so.1.3.0
+lib/libnss_dns.so.2
+libnss_dns-2.15.so
+lib/libgcc_s.so
+/* GNU ld script
+   Use the shared library, but some functions are only in
+   the static library.  */
+GROUP ( libgcc_s.so.1 libgcc.a )
+lib/libmount.so.1
+libmount.so.1.1.0
+lib/librt.so.1
+librt-2.15.so
+lib/libblkid.so
+libblkid.so.1.1.0
+lib/libnsl.so.1
+libnsl-2.15.so
+lib/libsmartcols.so.1
+libsmartcols.so.1.1.0
+lib/modules
+lib/modules/2.6.36-102840-g23c7fec
+lib/modules/2.6.36-102840-g23c7fec/kernel
+lib/modules/2.6.36-102840-g23c7fec/kernel/crypto
+lib/modules/2.6.36-102840-g23c7fec/kernel/net
+lib/modules/2.6.36-102840-g23c7fec/kernel/net/netfilter
+lib/modules/2.6.36-102840-g23c7fec/kernel/net/ipv4
+lib/modules/2.6.36-102840-g23c7fec/kernel/net/ipv4/netfilter
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/parrot
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/parrot/spi
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/parrot/ultra_sound
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/media
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/media/video
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/media/video/uvc
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/net
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/net/usb
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/usb
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/usb/gadget
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/usb/storage
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/usb/host
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/usb/class
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/usb/core
+lib/modules/2.6.36-102840-g23c7fec/kernel/drivers/scsi
+lib/modules/2.6.36-102840-g23c7fec/kernel/lib
+lib/modules/2.6.36-102840-g23c7fec/modules.devname
+# Device nodes to trigger on-demand module loading.
+lib/modules/2.6.36-102840-g23c7fec/modules.softdep
+# Soft dependencies extracted from modules themselves.
+lib/ld-linux.so.3
+ld-2.15.so
+lib/libthread_db.so.1
+libthread_db-1.0.so
+lib/libutil.so.1
+libutil-2.15.so
+usr/ssl
+usr/ssl/misc/c_issuer
+#!/bin/sh
+# print out the issuer
+for i in $*
+n=`openssl x509 -issuer -noout -in $i`
+echo "$i
+done
+usr/ssl/misc/c_name
+#!/bin/sh
+# print the subject
+for i in $*
+n=`openssl x509 -subject -noout -in $i`
+echo "$i
+done
+usr/ssl/misc/c_hash
+#!/bin/sh
+# print out the hash values 
+for i in $*
+h=`openssl x509 -hash -noout -in $i`
+echo "$h.0 => $i"
+done
+usr/ssl/misc/c_info
+#!/bin/sh
+# print the subject
+for i in $*
+n=`openssl x509 -subject -issuer -enddate -noout -in $i`
+echo "$i"
+echo "$n"
+echo "--------"
+done
+usr/share
+usr/share/udhcpc
+usr/sbin
+usr/sbin/nanddump
+../../bin/busybox
+usr/sbin/setlogcons
+usr/sbin/ubirmvol
+usr/sbin/findfs
+tune2fs
+usr/sbin/fsck.ext2
+e2fsck
+usr/sbin/rdate
+usr/sbin/loadfont
+usr/sbin/ntpd
+usr/sbin/ubimkvol
+usr/sbin/dhcprelay
+usr/sbin/fsck.ext4
+e2fsck
+usr/sbin/fbset
+usr/sbin/nbd-client
+usr/sbin/ftpd
+usr/sbin/setfont
+usr/sbin/inetd
+usr/sbin/udhcpd
+usr/sbin/e2label
+tune2fs
+usr/sbin/nandwrite
+usr/sbin/ubiupdatevol
+usr/sbin/ubirsvol
+usr/sbin/telnetd
+usr/sbin/fsck.ext4dev
+e2fsck
+usr/sbin/mkfs.ext4dev
+mke2fs
+usr/sbin/ubiattach
+usr/sbin/rdev
+usr/sbin/httpd
+usr/sbin/fsck.ext3
+e2fsck
+usr/sbin/chroot
+usr/sbin/ubidetach
+usr/sbin/mkfs.ext4
+mke2fs
+usr/sbin/mkfs.ext3
+mke2fs
+usr/sbin/mkfs.ext2
+mke2fs
+usr/bin
+usr/bin/wc
+usr/bin/dumpleases
+usr/bin/killall5
+usr/bin/split
+usr/bin/beep
+usr/bin/env
+usr/bin/less
+usr/bin/flock
+usr/bin/du
+usr/bin/uniq
+usr/bin/unix2dos
+usr/bin/cut
+usr/bin/fuser
+usr/bin/cmp
+usr/bin/wget
+usr/bin/awk
+usr/bin/xz
+usr/bin/[[
+usr/bin/install
+usr/bin/ifplugd
+usr/bin/nc
+usr/bin/time
+usr/bin/sort
+usr/bin/fgconsole
+usr/bin/nslookup
+usr/bin/yes
+usr/bin/pstree
+usr/bin/od
+usr/bin/clear
+usr/bin/pwdx
+usr/bin/basename
+usr/bin/ftpget
+usr/bin/tee
+usr/bin/reset
+usr/bin/head
+usr/bin/telnet
+usr/bin/ttysize
+usr/bin/tr
+usr/bin/id
+usr/bin/[
+usr/bin/md5sum
+usr/bin/lsusb
+usr/bin/mkfifo
+usr/bin/lsof
+usr/bin/logger
+usr/bin/uptime
+usr/bin/test
+usr/bin/expr
+usr/bin/pmap
+usr/bin/setsid
+usr/bin/script
+usr/bin/find
+usr/bin/strings
+usr/bin/ftpput
+usr/bin/xzcat
+usr/bin/groups
+usr/bin/seq
+usr/bin/readlink
+usr/bin/whois
+usr/bin/tail
+usr/bin/volname
+usr/bin/dc
+usr/bin/top
+usr/bin/lzopcat
+usr/bin/smemcap
+usr/bin/tftp
+usr/bin/arping
+usr/bin/resize
+usr/bin/free
+usr/bin/unlzop
+usr/bin/killall
+usr/bin/lspci
+usr/bin/openvt
+usr/bin/xargs
+usr/bin/tty
+usr/bin/which
+usr/bin/eject
+usr/bin/unxz
+usr/bin/dos2unix
+usr/bin/hexdump
+usr/bin/dirname
+usr/lib
+usr/lib/libnl-route-3.so.200
+libnl-route-3.so.200.19.0
+usr/lib/libjson.so
+libjson.so.0.0.1
+usr/lib/engines
+usr/lib/libnl-idiag-3.so
+libnl-idiag-3.so.200.19.0
+usr/lib/libz.so
+libz.so.1.2.3
+usr/lib/libpopt.so.0
+libpopt.so.0.0.0
+usr/lib/libturbojpeg.so.0
+libturbojpeg.so.0.1.0
+usr/lib/libarcommands.so
+libarcommands-3.1.0.so
+usr/lib/libarnetwork.so
+libarnetwork-3.1.0.so
+usr/lib/libexif.so
+libexif.so.12.3.3
+usr/lib/libexif.so.12
+libexif.so.12.3.3
+usr/lib/libnl-3.so
+libnl-3.so.200.19.0
+usr/lib/libnl-nf-3.so.200
+libnl-nf-3.so.200.19.0
+usr/lib/libstdc++.so.6
+libstdc++.so.6.0.16
+usr/lib/libpopt.so
+libpopt.so.0.0.0
+usr/lib/libnl-cli-3.so.200
+libnl-cli-3.so.200.19.0
+usr/lib/libavahi-common.so.3
+libavahi-common.so.3.5.2
+usr/lib/libnl-nf-3.so
+libnl-nf-3.so.200.19.0
+usr/lib/libdaemon.so.0
+libdaemon.so.0.5.0
+usr/lib/libnl-genl-3.so
+libnl-genl-3.so.200.19.0
+usr/lib/libarmedia.so
+libarmedia-3.1.0.so
+usr/lib/libexpat.so
+libexpat.so.1.5.2
+usr/lib/libarnetworkal.so
+libarnetworkal-3.1.0.so
+usr/lib/libz.so.1
+libz.so.1.2.3
+usr/lib/libexpat.so.1
+libexpat.so.1.5.2
+usr/lib/libnl-cli-3.so
+libnl-cli-3.so.200.19.0
+usr/lib/libstdc++.so
+libstdc++.so.6.0.16
+usr/lib/libarstream.so
+libarstream-3.1.0.so
+usr/lib/libjson.so.0
+libjson.so.0.0.1
+usr/lib/libusb-0.1.so.4
+libusb-0.1.so.4.4.4
+usr/lib/libnl-3.so.200
+libnl-3.so.200.19.0
+usr/lib/libjpeg.so.62
+libjpeg.so.62.1.0
+usr/lib/libdaemon.so
+libdaemon.so.0.5.0
+usr/lib/libturbojpeg.so
+libturbojpeg.so.0.1.0
+usr/lib/libardiscovery.so
+libardiscovery-3.1.0.so
+usr/lib/libavahi-common.so
+libavahi-common.so.3.5.2
+usr/lib/libinotifytools.so
+libinotifytools.so.0.4.1
+usr/lib/libnl
+usr/lib/libnl/cli
+usr/lib/libnl/cli/qdisc
+usr/lib/libnl/cli/cls
+usr/lib/libavahi-core.so
+libavahi-core.so.7.0.1
+usr/lib/libarsal.so
+libarsal-3.1.0.so
+usr/lib/libusb.so
+libusb-0.1.so.4.4.4
+usr/lib/libnl-route-3.so
+libnl-route-3.so.200.19.0
+usr/lib/libinotifytools.so.0
+libinotifytools.so.0.4.1
+usr/lib/libcrypto.so
+libcrypto.so.1.0.0
+usr/lib/libjpeg.so
+libjpeg.so.62.1.0
+usr/lib/libnl-idiag-3.so.200
+libnl-idiag-3.so.200.19.0
+usr/lib/libavahi-core.so.7
+libavahi-core.so.7.0.1
+usr/lib/libnl-genl-3.so.200
+libnl-genl-3.so.200.19.0
+usr/lib/libssl.so
+libssl.so.1.0.0
+var/lock
+/tmp/lock
+var/run
+/tmp/run
+var/log
+/tmp/log
+var/lib
+/data/lib
+var/cache
+/tmp/cache
+var/tmp
+/tmp/tmp
