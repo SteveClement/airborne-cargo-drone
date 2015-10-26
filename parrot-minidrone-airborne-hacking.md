@@ -155,18 +155,21 @@ The only interesting info here would be **Mass storage device** and **idVendor=1
 Linux maps these ids to the Parrot Rolling Spider but I can tell you this is a Parrot Airborne Cargo Minidrone.
 
 ## Additional sources
-
 AR SDK Build Utils can be used to write applications which control the latest generation of Parrot Drones (including the Airborne)
 
 [Parrot Developer Portal](http://developer.parrot.com/)
+
 [AR SDK Build Utils on GitHub](https://github.com/Parrot-Developers/ARSDKBuildUtils) (Thanks to @rafi0t)
+
 [Install AR SDK Build Utils](https://github.com/Parrot-Developers/Docs/blob/master/Installation/INSTALL)
+
 [Parrot Official GitHub repo](https://github.com/Parrot-Developers)
+
 [Parrot AR Drone 2.0 Hacking](http://www.nodecopter.com/hack)
+
 [General Drone Hacks](http://dronehacks.com/)
 
 ## Google queries
-
 ```
 hacking parrot drone plf
 parrot minidrones hacking
