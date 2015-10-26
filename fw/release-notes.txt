@@ -1,0 +1,29 @@
+Version 2.1.7
+
+Fixed issues
+
+- New management of motor cut out
+- Do not shutdown if mass storage is mounted on Host, needed for Apple
+
++ Version 2.1.3
+
+Fixed issues
+
+[Media] Bad behavior of the drone after a taking of picture
+[Media] Sometimes the pictures taken are not saved
+
++ Version 2.1.1
+
+FIXES
+
+- [Interface] The Battery Level in the piloting screen is now updated after unplugging of the USB Cable without leaving the screen
+- [Navigation] Mini Drone is now more stable when it is positioned at a height of 5 meters or more
+- Impossible to take pictures after renaming the RS storage
+
+IMPROVEMENTS
+
+[Security]Motors security, The motors are stopped immediately after the software crash
+
++ Version 2.0.31
+
+Take Off improvement

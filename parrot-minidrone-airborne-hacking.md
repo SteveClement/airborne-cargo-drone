@@ -80,4 +80,30 @@ mount -o nolock,proto=tcp -t nfs $ip:/srv/nfs /mnt/nfs
 As of 23.10.2015 I am not sure how the networking works on the drone. Plainly plugging it into an OS X Box only mounts the Mass Storage of the drone (which can be used to flash the drone or transfer images taken by the drone)
 A Linux test comes next as the bigger sister drones can be plugged in and they present themselves as a USB-Network device.
 
-## 
+## Linux usb-attach
+
+Once attached to a Linux machine, you will see the following output
+
+```
+Oct 26 10:39:43 steve-ws kernel: [2398231.362852] usb 2-8: new high-speed USB device number 5 using ehci-pci
+Oct 26 10:39:43 steve-ws kernel: [2398231.506129] usb 2-8: New USB device found, idVendor=19cf, idProduct=0907
+Oct 26 10:39:43 steve-ws kernel: [2398231.506139] usb 2-8: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+Oct 26 10:39:43 steve-ws kernel: [2398231.506143] usb 2-8: Product: RollingSpider
+Oct 26 10:39:43 steve-ws kernel: [2398231.506146] usb 2-8: Manufacturer: Parrot
+Oct 26 10:39:43 steve-ws kernel: [2398231.511233] usb-storage 2-8:1.0: USB Mass Storage device detected
+Oct 26 10:39:43 steve-ws kernel: [2398231.519003] scsi9 : usb-storage 2-8:1.0
+Oct 26 10:39:43 steve-ws mtp-probe: checking bus 2, device 5: "/sys/devices/pci0000:00/0000:00:1d.7/usb2/2-8"
+Oct 26 10:39:43 steve-ws mtp-probe: bus: 2, device: 5 was not an MTP device
+Oct 26 10:39:44 steve-ws kernel: [2398232.522252] scsi 9:0:0:0: Direct-Access     Linux    File-CD Gadget   0319 PQ: 0 ANSI: 2
+Oct 26 10:39:44 steve-ws kernel: [2398232.523798] sd 9:0:0:0: Attached scsi generic sg7 type 0
+Oct 26 10:39:44 steve-ws kernel: [2398232.531619] sd 9:0:0:0: [sdg] 67584 512-byte logical blocks: (34.6 MB/33.0 MiB)
+Oct 26 10:39:44 steve-ws kernel: [2398232.533583] sd 9:0:0:0: [sdg] Write Protect is off
+Oct 26 10:39:44 steve-ws kernel: [2398232.533589] sd 9:0:0:0: [sdg] Mode Sense: 0f 00 00 00
+Oct 26 10:39:44 steve-ws kernel: [2398232.535607] sd 9:0:0:0: [sdg] Write cache: disabled, read cache: disabled, doesn't support DPO or FUA
+Oct 26 10:39:44 steve-ws kernel: [2398232.549556]  sdg: sdg1
+Oct 26 10:39:44 steve-ws kernel: [2398232.561248] sd 9:0:0:0: [sdg] Attached SCSI removable disk
+```
+
+The only interesting info here would be **Mass storage device** and **idVendor=19cf // idProduct=0907**
+
+Linux maps these ids to the Parrot Rolling Spider but I can tell you this is a Parrot Airborne Cargo Minidrone.
