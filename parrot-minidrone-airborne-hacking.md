@@ -154,6 +154,88 @@ The only interesting info here would be **Mass storage device** and **idVendor=1
 
 Linux maps these ids to the Parrot Rolling Spider but I can tell you this is a Parrot Airborne Cargo Minidrone.
 
+## AR SDK Build Utils on OSX
+
+First install dependencies
+```
+brew install git wget automake autoconf libtool yasm nasm rpl android-platform-tools android-sdk android-ndk
+export ANDROID_HOME=/usr/local/opt/android-sdk # add to .bashrc or .zshrc or similar preferred shell rc file
+export ANDROID_NDK_PATH=/usr/local/opt/android-ndk
+export ANDROID_SDK_PATH=/usr/local/opt/android-sdk
+export PATH=$PATH:/usr/local/opt/android-ndk/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86_64/bin # Add the following to $PATH adjust accordingly
+export PATH=$PATH:/usr/local/opt/android-ndk/toolchains/mipsel-linux-android-4.8/prebuilt/darwin-x86_64/bin
+export PATH=$PATH:/usr/local/opt/android-ndk/toolchains/x86-4.8/prebuilt/darwin-x86_64/bin
+android # just accept defaults and install Android SDK for API 19 (Android 4.4.2)
+```
+
+Clone the repo
+```
+https://github.com/Parrot-Developers/ARSDKBuildUtils.git
+```
+
+Check if all is ok
+```
+~/Desktop/code/ARSDKBuildUtils   master  ./CheckEnv.py
+-- Checking if your environment will build the ARSDK for different platforms --
+
+[[ Should work, Won't work, Not tested, may work ]]
+
+Generic             : OK !
+iOS                 : OK !
+Unix                : OK !
+Android             : Missing library `-llog`
+```
+# currently -llog ([LibLog](https://github.com/damianh/LibLog) I suspect) is still missing
+
+Build for iOS
+
+```
+./SDK3Build.py -t iOS
+```
+
+## Parrot Rolling Spider
+
+The [Rolling Spider](http://www.parrot.com/products/rolling-spider/) is in essence the same as the Airborne Cargo with additional sides that server as wheels.
+
+### Visual Programming
+
+[Learn Visual Programming with the Tickle App](http://blog.parrot.com/2015/03/23/learn-visual-programming-rolling-spider/)
+
+[Tickle App](https://www.tickleapp.com/en-us/)
+
+### Rolling Spider Edu
+
+
+[Rolling Spider software package for Education](https://github.com/Parrot-Developers/RollingSpiderEdu)
+
+[Rolling Spider edu quick start](https://github.com/Parrot-Developers/RollingSpiderEdu/blob/master/Parrot_customFirmware/rollingspider.edu_quick_start.pdf)
+
+git clone https://github.com/Parrot-Developers/RollingSpiderEdu.git
+
+#### Rolling Spider Edu MIT courses
+
+[Learn How to Design Feedback Control Systems and Experiment with a Palm-size Drone](http://karaman.mit.edu/1630/)
+
+[Robotics Toolbox](http://www.petercorke.com/Robotics_Toolbox.html)
+
+[Getting Started with MIT's Rolling Spider MATLAB Toolbox](https://github.com/Parrot-Developers/RollingSpiderEdu/blob/master/MIT_MatlabToolbox/media/GettingStarted.pdf)
+
+## Oddities
+
+On [this random scratchpad file](https://github.com/Parrot-Developers/firmwared/blob/master/doc/scratchpad) in the firmwared repo is the following oddball
+
+```
+# get a random woman name
+GET -b http://www.behindthename.com/ '/random/random.php?number=1&gender=f&surname=&all=yes' | grep '<a class="plain" href="/name/' | sed 's/<[^<]*>//g' | recode html..utf-8
+# liste d'adjectifs tirée de http://www.dailywritingtips.com/100-exquisite-adjectives/
+```
+
+The **GET** command is from libwww-perl and **recode** can be found in the recode package on most systems.
+
+### firmwared
+
+The [firmwared repo](https://github.com/Parrot-Developers/firmwared) is a Daemon responsible of spawning drone firmware instances in containers.
+
 ## Additional sources
 AR SDK Build Utils can be used to write applications which control the latest generation of Parrot Drones (including the Airborne)
 
