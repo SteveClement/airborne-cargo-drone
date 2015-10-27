@@ -191,6 +191,29 @@ Build for iOS
 
 ```
 ./SDK3Build.py -t iOS
+--------8<--------
+Status :
+ --> Legend : FAIL PASS NOT_BUILT NOT_REQUESTED NOT_AVAILABLE
+ --> Binaries are postfixed with `*`
+ --> Postbuild scripts  are postfixed with `+`
+
+Unix       : openssl             curl                json                ARSAL               ARNetworkAL         ARNetwork           ARDiscovery         ARCommands          ARStream
+             ARMavlink           ARUtils             ARDataTransfer      ARUpdater           ARMedia             ARController
+
+iOS        : openssl             curl                json                ARSAL               ARNetworkAL         ARNetwork           ARDiscovery         ARCommands          ARStream
+             ARMavlink           ARUtils             ARDataTransfer      ARUpdater           ARMedia             ARController
+
+Android    : openssl             curl                json                ARSAL               ARNetworkAL         ARNetwork           ARDiscovery         ARCommands          ARStream
+             ARMavlink           ARUtils             ARDataTransfer      ARUpdater           ARMedia             ARController
+
+End of build
+Build took 8h 45m 15s
+```
+
+Build for Unix
+```
+./SDK3Build.py -t iOS
+--------8<--------
 ```
 
 ## Parrot Rolling Spider
@@ -250,6 +273,8 @@ AR SDK Build Utils can be used to write applications which control the latest ge
 [Parrot AR Drone 2.0 Hacking](http://www.nodecopter.com/hack)
 
 [General Drone Hacks](http://dronehacks.com/)
+
+[Dronekit Python](https://github.com/Parrot-Developers/dronekit-python)
 
 ## Google queries
 ```
