@@ -228,7 +228,6 @@ The [Rolling Spider](http://www.parrot.com/products/rolling-spider/) is in essen
 
 ### Rolling Spider Edu
 
-
 [Rolling Spider software package for Education](https://github.com/Parrot-Developers/RollingSpiderEdu)
 
 [Rolling Spider edu quick start](https://github.com/Parrot-Developers/RollingSpiderEdu/blob/master/Parrot_customFirmware/rollingspider.edu_quick_start.pdf)
@@ -242,6 +241,13 @@ git clone https://github.com/Parrot-Developers/RollingSpiderEdu.git
 [Robotics Toolbox](http://www.petercorke.com/Robotics_Toolbox.html)
 
 [Getting Started with MIT's Rolling Spider MATLAB Toolbox](https://github.com/Parrot-Developers/RollingSpiderEdu/blob/master/MIT_MatlabToolbox/media/GettingStarted.pdf)
+
+## Rolling Spider
+
+The Rolling Spider according to the internet will give you a Bluetooth BNEP Network interface as well as an USBNet interface. [One person](https://www.bignerdranch.com/blog/to-kill-9-a-drone-daemon-part-1/) even had a serial port appearing.
+
+ This same person has a detailed account on playing with the RS on various VMs.
+ [Here is the write-up](https://www.bignerdranch.com/blog/to-kill-9-a-drone-daemon-part-2/)
 
 ## Oddities
 
@@ -276,9 +282,26 @@ AR SDK Build Utils can be used to write applications which control the latest ge
 
 [Dronekit Python](https://github.com/Parrot-Developers/dronekit-python)
 
+[Rolling Spider Bluetooth LE Analysis](http://robotika.cz/robots/jessica/en)
+
+[BLE packet capture on Android 4.4](https://www.nowsecure.com/blog/2014/02/07/bluetooth-packet-capture-on-android-4-4/#viaforensics)
+
+[ARDrone 3 commands (XML)](https://github.com/Parrot-Developers/libARCommands/blob/master/Xml/ARDrone3_commands.xml)
+
+[RSControl Android app to control Rolling Spider](https://github.com/valentin-bas/RSControl)
+
+[Jessica - Parrot Minidrone Rolling Spider Repo **NOT** controlled via Python](https://github.com/robotika/jessica)
+
+[Bluepy - Python interface to Bluetooth LE on Linux](https://github.com/IanHarvey/bluepy)
+
+[blucat - netcat for bluetooth](https://github.com/ieee8023/blucat)
+
+[Rolling Spider for Node.js](https://github.com/voodootikigod/node-rolling-spider)
+
 ## Google queries
 ```
 hacking parrot drone plf
 parrot minidrones hacking
 Parrot Dragon Firmware
 ```
+
