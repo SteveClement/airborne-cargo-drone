@@ -11,7 +11,6 @@ propeller_types_onDrone.jpg -> IMG_9018.jpg
 top.jpg -> IMG_8804.jpg    
 webcam_controller.jpg -> IMG_9068.jpg
 minidrones_battery_charger_PCB.jpg -> IMG_9069.jpg
-lipo.jpg -> IMG_9070.jpg
 NewMiniDronesSpecsEN.png
 
 ## CPU
@@ -22,12 +21,12 @@ The CPU used is an [ARM Cortex A9](https://en.wikipedia.org/wiki/ARM_Cortex-A9) 
 
 The Camera on can make snapshots at 480x640
 
-
 ## Webcam controller
 
 The [Webcam controller is from Etron Technology, Inc](http://www.etron.com/en/products/webcam_detial.php?Product_ID=9)
 
 ### Specs
+| Description    | Description  |
 |----------------|-----|
 |USB             | 2.0 |
 |e-XTAL          | N/A |
@@ -55,4 +54,5 @@ You will find a Microchip [Operation Amplifier](https://en.wikipedia.org/wiki/Op
 ## Li-Po
 
 The LiPo has 3 pins with the middle pin being a 10㏀ [Thermistor](https://en.wikipedia.org/wiki/Thermistor)
-![Li-Po Picture](lipo.jpg)
+
+![Li-Po Picture](IMG_9070.jpg)

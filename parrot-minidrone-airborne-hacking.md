@@ -17,6 +17,8 @@ Taking off and leaving the drone "steady" gives you ±8 minutes of flight as per
 
 The parrot charger has an output of 4.2V and charges at 0.5A. The charging chip used is from [Texas Instruments BQ24040 (DSQ)(R)(T)](https://www.ti.com/product/bq24040) [datasheet](http://www.ti.com/lit/ds/symlink/bq24041.pdf) Where the R means Reel and T Tape which is plainly how they ship when you order bulk.
 
+![Parrot charger PCB](images/IMG_9069.jpg)
+
 The parrot drone charges faster but no specifications can be found on the chip used.
 
 ### Charging
