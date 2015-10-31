@@ -1,2 +1,4 @@
 *.plf filter=lfs diff=lfs merge=lfs -text
 *.raw filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text

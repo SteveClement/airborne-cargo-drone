@@ -6,6 +6,24 @@ My hardware version is HW_01
 
 I am fairly sure the Parrot manufacturer has on purpose made it easier to hack their devices to have at least some appeal to the DIY hacking communities and still be able to tell their investors that their **IP** is in dry sheets.
 
+## Battery
+
+Taking off and leaving the drone "steady" gives you +- 8 minutes of flight as per the specifications on the Parrot.com site. Using the Rolling Spider with the wheels takes of 2 minutes giving 6 minutes of flight.
+
+
+### Specs
+
+#### Chargers
+
+The parrot charger has an output of 4.2V and charges at 0.5A. The charging chip used is from [Texas Instruments BQ24040 (DSQ)(R)(T)](https://www.ti.com/product/bq24040) [datasheet](http://www.ti.com/lit/ds/symlink/bq24041.pdf) Where the R means Reel and T Tape which is plainly how they ship when you order bulk.
+
+The parrot drone charges faster but no specifications can be found on the chip used.
+
+### Charging
+
+Using the Drone I had full charge in +- 35 Minutes using 2.4A USB charger.
+
+
 ## Firmware
 
 All parrot drones seem to be flashable with Parrots own .plf format.
