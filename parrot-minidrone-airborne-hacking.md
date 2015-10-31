@@ -8,7 +8,7 @@ I am fairly sure the Parrot manufacturer has on purpose made it easier to hack t
 
 ## Battery
 
-Taking off and leaving the drone "steady" gives you +- 8 minutes of flight as per the specifications on the Parrot.com site. Using the Rolling Spider with the wheels takes of 2 minutes giving 6 minutes of flight.
+Taking off and leaving the drone "steady" gives you ±8 minutes of flight as per the specifications on the Parrot.com site. Using the Rolling Spider with the wheels takes of 2 minutes giving 6 minutes of flight.
 
 
 ### Specs
