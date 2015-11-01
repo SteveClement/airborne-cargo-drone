@@ -17,3 +17,7 @@ All firmwares have been downloaded directly from the Parrot Site. Filenames are 
 |c200bad48225ecb999a6daa403ff1afae877a490    | 18527040 18MB |updater_payload.plf        | v2.0.57 | Bebop                         |
 
 From the table above we know that the *Cargo* *Night* and *Hydrofoil* share the same firmware update and thus also the same underlying hardware.
+
+### Notes from analysing the libs
+
+* The tection type of an update file is 0x0c ->  https://github.com/SteveClement/ardrone-tool/blob/master/projects/plf_inst_extract/plf_inst_extract.c#L127 (ardrone_update.plf has one, the other ones don't)
