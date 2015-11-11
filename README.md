@@ -1,1 +1,0 @@
-parrot-minidrone-airborne-hacking.md
