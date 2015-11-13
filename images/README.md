@@ -55,4 +55,4 @@ You will find a Microchip [Operation Amplifier](https://en.wikipedia.org/wiki/Op
 
 The LiPo has 3 pins with the middle pin being a 10㏀ [Thermistor](https://en.wikipedia.org/wiki/Thermistor)
 
-![Li-Po Picture](IMG_9070.jpg =100x)
+![Li-Po Picture](IMG_9070.jpg){:width="100x"}
