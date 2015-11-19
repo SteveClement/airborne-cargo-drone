@@ -1,5 +1,7 @@
 # Hacking the Parrot MiniDrone Airborne Cargo (Travis)
 
+[![Join the chat at https://gitter.im/SteveClement/airborne-cargo-drone](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/SteveClement/airborne-cargo-drone?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 After a non-extensive search on Parrot MiniDrone Hacking, this is my true story.
 
 My hardware version is HW_01
