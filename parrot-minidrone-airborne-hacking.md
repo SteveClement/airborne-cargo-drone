@@ -320,10 +320,25 @@ AR SDK Build Utils can be used to write applications which control the latest ge
 
 [Rolling Spider for Node.js](https://github.com/voodootikigod/node-rolling-spider)
 
+[Paparazzi The Free Autopilot on AR.Drone2](http://wiki.paparazziuav.org/wiki/AR_Drone_2)
+
+[DroneHacks](http://dronehacks.com/)
+
+## AR.Drone 2 Firmware Downgrade
+
+To downgrade the firmware on the AR.Drone to you need to fool the OS in thinking it's out of date:
+
+```
+echo 2.0.11 > /firmware/version.txt
+
+echo 2.4.3 > /update/version.txt
+```
+
+The AR.Drone 2 has an FTP Server running on port 5551. Connect and upload your New-Old Firmware.
+
 ## Google queries
 ```
 hacking parrot drone plf
 parrot minidrones hacking
 Parrot Dragon Firmware
 ```
-
